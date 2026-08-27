@@ -3,24 +3,56 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Sticky navbar height. Scales with the root font size, so heroes can
+     size themselves against it instead of a hardcoded pixel value. */
+  --nav-h: 3.5625rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-chivo);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Scale the whole design up on large displays. Tailwind sizing and
+   spacing are rem-based, so lifting the root size keeps every section's
+   proportions identical to how they read on a laptop. */
+@media (min-width: 1536px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-chivo), Arial, Helvetica, sans-serif;
 }
